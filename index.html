@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DedShop — Моды, Сборки, Шейдеры</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header>
+    <div class="logo">⛏ DedShop</div>
+    <nav>
+      <a href="#mods">Моды</a>
+      <a href="#modpacks">Сборки</a>
+      <a href="#shaders">Шейдеры</a>
+      <a href="#cart" class="cart-btn">🛒 <span id="cart-count">0</span></a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <h1>Лучшие моды для Minecraft</h1>
+    <p>Моды, сборки и шейдеры для любой версии игры</p>
+    <a href="#mods" class="btn-primary">Смотреть каталог</a>
+  </section>
+
+  <!-- Моды -->
+  <section id="mods" class="section">
+    <h2>Моды</h2>
+    <div class="grid" id="mods-grid"></div>
+  </section>
+
+  <!-- Сборки -->
+  <section id="modpacks" class="section dark">
+    <h2>Сборки</h2>
+    <div class="grid" id="modpacks-grid"></div>
+  </section>
+
+  <!-- Шейдеры -->
+  <section id="shaders" class="section">
+    <h2>Шейдеры</h2>
+    <div class="grid" id="shaders-grid"></div>
+  </section>
+
+  <!-- Корзина -->
+  <div id="cart" class="cart-overlay hidden">
+    <div class="cart-box">
+      <h3>Корзина</h3>
+      <ul id="cart-items"></ul>
+      <div class="cart-total">Итого: <span id="cart-total">0</span> ₽</div>
+      <button class="btn-primary" onclick="checkout()">Оформить заказ</button>
+      <button class="btn-secondary" onclick="toggleCart()">Закрыть</button>
+    </div>
+  </div>
+
+  <!-- Toast -->
+  <div id="toast" class="toast hidden"></div>
+
+  <footer>
+    <p>© 2026 DedShop. Все права защищены.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
