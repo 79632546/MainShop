@@ -75,8 +75,23 @@ function renderCart() {
 
 function toggleCart() {
   const overlay = document.getElementById('cart');
-  overlay.classList.toggle('hidden');
-  if (!overlay.classList.contains('hidden')) renderCart();
+  const box = overlay.querySelector('.cart-box');
+
+  if (overlay.classList.contains('hidden')) {
+    // Открыть
+    overlay.classList.remove('hidden');
+    overlay.classList.add('visible');
+    box.classList.remove('closing');
+    renderCart();
+  } else {
+    // Закрыть с анимацией
+    box.classList.add('closing');
+    overlay.classList.remove('visible');
+    setTimeout(() => {
+      overlay.classList.add('hidden');
+      box.classList.remove('closing');
+    }, 250);
+  }
 }
 
 function checkout() {
@@ -85,7 +100,7 @@ function checkout() {
   cart = [];
   updateCartCount();
   renderCart();
-  setTimeout(() => document.getElementById('cart').classList.add('hidden'), 1500);
+  setTimeout(() => toggleCart(), 1500);
 }
 
 function showToast(msg) {
@@ -94,6 +109,26 @@ function showToast(msg) {
   t.classList.remove('hidden');
   setTimeout(() => t.classList.add('hidden'), 2500);
 }
+
+// Плавный скролл для навигации
+document.querySelectorAll('nav a:not(.cart-btn)').forEach(link => {
+  link.addEventListener('click', (e) => {
+    const href = link.getAttribute('href');
+    if (href && href.startsWith('#')) {
+      e.preventDefault();
+      const target = document.querySelector(href);
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }
+  });
+});
+
+// Плавный скролл для кнопки "Смотреть каталог"
+document.querySelector('.hero .btn-primary').addEventListener('click', (e) => {
+  e.preventDefault();
+  document.querySelector('#mods').scrollIntoView({ behavior: 'smooth', block: 'start' });
+});
 
 // Клик по кнопке корзины в хедере
 document.querySelector('.cart-btn').addEventListener('click', (e) => {
